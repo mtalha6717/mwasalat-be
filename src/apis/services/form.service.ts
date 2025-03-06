@@ -9,23 +9,20 @@ class FormService {
     return await formRepository.find({ order: { createdAt: 'DESC' } })
   }
   async addForm(formData: Partial<Form>): Promise<boolean> {
-    let isEmailSent = false
     const form = formRepository.create(formData)
     form.confirmationToken = uuidv4()
-    const savedForm = await formRepository.save(form)
     const distance = calculateDistance(
-      formData.latitude,
-      formData.longitude,
-      Number(process.env.ORIGIN_LATITUDE), // Reference latitude
-      Number(process.env.ORIGIN_LONGITUDE) // Reference longitude
+      formData.userLatitude,
+      formData.userLongitude,
+      formData.collegeLatitude,
+      formData.collegeLongitude
     )
+    form.userDistanceFromCollege = distance
+    const savedForm = await formRepository.save(form)
 
-    if (distance <= Number(process.env.TRASHLOAD_DISTANCE_IN_KM)) {
-      await sendConfirmationEmail(formData.email, form.confirmationToken)
-      isEmailSent = true
-    }
+    await sendConfirmationEmail(formData.email, form.confirmationToken)
 
-    return isEmailSent
+    return true
   }
 
   async verifyEmail(token: string, email): Promise<void> {
@@ -33,7 +30,7 @@ class FormService {
     if (!form) {
       throw new Error('Invalid or expired token')
     }
-    form.isVerified = true
+    form.isEmailVerified = true
     form.confirmationToken = null
     await formRepository.save(form)
   }

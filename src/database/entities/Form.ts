@@ -7,19 +7,13 @@ class Form {
   id: number
 
   @Column({ type: 'varchar', length: 255 })
-  name: string
-
-  @Column({ type: 'varchar', length: 255 })
   email: string
 
   @Column({ type: 'varchar' })
   phone: string
 
-  @Column({
-    type: 'enum',
-    enum: College
-  })
-  college: College
+  @Column({ type: 'varchar' })
+  college: string
 
   @Column({
     type: 'enum',
@@ -27,9 +21,6 @@ class Form {
     default: FormType.UNIVERSITY
   })
   type: FormType
-
-  @Column({ type: 'text' })
-  description: string
 
   @Column({ type: 'double', nullable: true })
   userLatitude: number
@@ -55,7 +46,7 @@ class Form {
   @Column({ type: 'boolean', default: false })
   isPhoneVerified: boolean
 
-  @Column({ type: 'number', default: false })
+  @Column({ type: 'double', default: false })
   phoneOtp: number
 
   @Column({ type: 'varchar', length: 255 })

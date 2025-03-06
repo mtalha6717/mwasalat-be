@@ -6,15 +6,17 @@ const addFormSchema = {
     name: Joi.string().required(),
     email: Joi.string().email().required(),
     phone: Joi.string().required(),
-    college: Joi.string()
-      .valid(...Object.values(College))
+    college:
+      Joi.string()
       .required(),
     type: Joi.string()
       .valid(...Object.values(FormType))
       .default('University'),
     description: Joi.string().required(),
-    latitude: Joi.number().optional(),
-    longitude: Joi.number().optional(),
+    userLatitude: Joi.number().optional(),
+    userLongitude: Joi.number().optional(),
+    collegeLatitude: Joi.number().optional(),
+    collegeLongitude: Joi.number().optional(),
     address: Joi.string().optional()
   })
 }
