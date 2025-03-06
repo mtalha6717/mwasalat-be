@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "es6"],
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "paths": {
+      "@entities": ["./src/database/entities/index.ts"],
+      "@database": ["./src/database"],
+      "@repositories": ["./src/database/repositories.ts"],
+      "@helpers": ["./src/helpers/index.ts"],
+      "@services": ["./src/apis/services/index.ts"],
+      "@validations": ["./src/apis/validations/index.ts"],
+      "@controllers": ["./src/apis/controllers/index.ts"],
+      "@routes": ["./src/apis/routes/index.ts"],
+      "@types": ["./src/types/index.ts"],
+      "@utils": ["./src/utils/index.ts"],
+      "@apis": ["./src/apis/index.ts"],
+      "@middleware": ["./src/middleware/index.ts"],
+      "@config": ["./src/config/index.ts"]
+    }
+  }
+}

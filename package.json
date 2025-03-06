@@ -1,0 +1,41 @@
+{
+  "name": "mwasalat-forms",
+  "version": "0.0.1",
+  "description": "Awesome project developed with TypeORM.",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^16.11.10",
+    "@types/nodemailer": "^6.4.17",
+    "ts-node": "10.9.1",
+    "typescript": "4.5.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "connect-multiparty": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "joi": "^17.13.3",
+    "module-alias": "^2.2.3",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.4",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.20",
+    "typeorm-naming-strategies": "^4.1.0",
+    "uuid": "^11.1.0"
+  },
+  "scripts": {
+    "start": "nodemon --delay 500ms ./src/bin/www.ts",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "migration": "yarn typeorm migration:run -d ./src/database/index.ts",
+    "migration:generate": "ts-node ./src/database/migration.ts",
+    "migration:revert": "yarn typeorm migration:revert -- -d ./src/database/index.ts"
+  }
+}
