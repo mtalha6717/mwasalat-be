@@ -71,8 +71,6 @@ class FormService {
       throw new Error('Failed to send OTP')
     }
 
-    console.log(phoneOtp, 'phoneOtp')
-
     return phoneOtp
   }
 
