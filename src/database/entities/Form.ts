@@ -46,7 +46,7 @@ class Form {
   @Column({ type: 'boolean', default: false })
   isPhoneVerified: boolean
 
-  @Column({ type: 'double', default: false })
+  @Column({ type: 'double', nullable: true })
   phoneOtp: number
 
   @Column({ type: 'varchar', length: 255 })

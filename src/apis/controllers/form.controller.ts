@@ -34,6 +34,34 @@ class FormController {
       return apiResponse.failResponse(res, '/verify-email', error.message)
     }
   }
+
+  async resendOtp(req: Request, res: Response): Promise<Response> {
+    try {
+      const { phone } = req.body
+      const form = await formRepository.findOne({ where: { phone } })
+      if (!form) {
+        return apiResponse.invalidData(res, 'Phone number not found')
+      }
+
+      if (form.isPhoneVerified) {
+        return apiResponse.invalidData(res, 'Phone number is already verified')
+      }
+      await formService.sendOtp(form)
+      return apiResponse.successResponse(res, 'OTP resent successfully')
+    } catch (error) {
+      return apiResponse.failResponse(res, '/resend-otp', error.message)
+    }
+  }
+
+  async verifyOtp(req: Request, res: Response): Promise<Response> {
+    try {
+      const { phone, otp } = req.body
+      await formService.verifyOtp(phone, parseInt(otp, 10))
+      return apiResponse.successResponse(res, 'OTP verified successfully')
+    } catch (error) {
+      return apiResponse.failResponse(res, '/verify-otp', error.message)
+    }
+  }
 }
 
 export default new FormController()

@@ -2,8 +2,7 @@ import * as nodemailer from 'nodemailer'
 
 export async function sendConfirmationEmail(email: string, token: string): Promise<void> {
   const transporter = nodemailer.createTransport({
-    // Configure your SMTP settings here
-    service: 'gmail',
+    service: 'Outlook365',
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS

@@ -17,6 +17,29 @@ const addFormSchema = {
   })
 }
 
+const verifyEmail = {
+  query: Joi.object().keys({
+    email: Joi.string().email().required(),
+    token: Joi.string().required()
+  })
+}
+
+const resendPhoneOtp = {
+  body: Joi.object().keys({
+    phone: Joi.string().required()
+  })
+}
+
+const verifyPhoneOtp = {
+  body: Joi.object().keys({
+    phone: Joi.string().required(),
+    otp: Joi.string().length(4).required()
+  })
+}
+
 export default {
-  addFormSchema
+  addFormSchema,
+  verifyEmail,
+  resendPhoneOtp,
+  verifyPhoneOtp
 }

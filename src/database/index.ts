@@ -31,7 +31,9 @@ const AppDataSource = new DataSource({
   migrations: [`${__dirname}/migrations/*{.ts,.js}`],
   namingStrategy: new SnakeNamingStrategy(),
   logging: false,
-  ssl: false
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 
 /**
